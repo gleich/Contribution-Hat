@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  contribution-hat:
+    container_name: contribution-hat
+    build: .
+    volumes:
+      - ~/sense_hat_containerized:/contribution-hat/sense_hat_containerized
+      - ~/secrets:/contribution-hat/secrets
+  control-sense-hat:
+    container_name: control-sense-hat
+    build: mattgleich/control-sense-hat
+    privileged: true
+    volumes:
+      - ~/sense_hat_containerized:/control-sense-hat/sense_hat_containerized
