@@ -6,7 +6,7 @@ services:
     build: .
     volumes:
       - ~/sense_hat_containerized:/contribution-hat/sense_hat_containerized
-      - ~/contribution-hat-config:/contribution-hat-config/secrets
+      - ~/contribution-hat-config:/contribution-hat/contribution-hat-config
   control-sense-hat:
     container_name: control-sense-hat
     image: mattgleich/control-sense-hat

@@ -8,7 +8,7 @@ with open("./contribution-hat-config/username.txt") as username_file:
     username = username_file.read()
 
 while True:
-    if datetime.now().hour < 6 and datetime.now().hour > 22:
+    if datetime.now().hour < 6:
         clear_vals = []
         for i in range(64):
             clear_vals.append([0, 0, 0])
