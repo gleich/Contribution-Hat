@@ -2,6 +2,8 @@
 
 Github Contribution Graph on the Raspberry Pi Sense Hat LED Matrix
 
+![Example Picture](./example.jpeg)
+
 ## Setup
 
 Using docker and docker compose, this is a super easy setup. Just do the following:
@@ -31,10 +33,27 @@ Due to the fact that the classic green colors that github.com uses look too simi
 
 ### Night Mode
 
-Set a hour for the lights to go on and to go off in Military time. Below are the setup steps:
+Set a list of hours for the lights to go off in Military time. Below are the setup steps:
 
-1. Add `on-time: THE HOUR` to `~/contribution-hat-config/config.yaml`
-2. Add `of-time: THE HOUR` to `~/contribution-hat-config/config.yaml`
+1. Add `off-hours: list of hours` to `~/contribution-hat-config/config.yaml`
+
+Below is an example
+
+```yaml
+username: "Matt-Gleich"
+timezone: "America/New_York"
+off-hours:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 21
+  - 22
+  - 23
+  - 24
+```
 
 Restart by running `docker-compose down` and `sudo reboot`
 

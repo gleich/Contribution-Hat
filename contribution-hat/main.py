@@ -5,14 +5,8 @@ import json
 import yaml
 import os
 
-# Loading from yaml file
-with open("./contribution-hat-config/config.yaml") as config_file:
-    config = yaml.load(config_file)
 
-os.environ["TZ"] = config["timezone"]
-
-
-def day_time_run():
+def day_time_run(config):
     # Making request to get user's contributions
     url = "https://github-contributions-api.herokuapp.com/{}/count".format(
         config["username"])
@@ -57,8 +51,12 @@ def day_time_run():
 
 
 while True:
-    if "on-time" in config.keys() and "off-time" in config.keys():
-        if datetime.datetime.now().hour < 7 and datetime.datetime.now() > 23:
+    # Loading from yaml file
+    with open("./contribution-hat-config/config.yaml") as config_file:
+        config = yaml.load(config_file)
+    os.environ["TZ"] = config["timezone"]
+    if "off-hours" in config.keys():
+        if datetime.datetime.now().hour in config["off-hours"]:
             clear_vals = []
             for i in range(64):
                 clear_vals.append([0, 0, 0])
@@ -66,6 +64,6 @@ while True:
                 json.dump(clear_vals, leds_json)
             sleep(30)
         else:
-            day_time_run()
+            day_time_run(config)
     else:
-        day_time_run()
+        day_time_run(config)
