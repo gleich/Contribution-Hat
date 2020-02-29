@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cwd=pwd
+
 cd ~
 
 rm -rf sense_hat_containerized
@@ -16,6 +18,6 @@ cd ~
 
 mkdir contribution-hat-config
 
-cd contribution-hat-config
+cd $cwd
 
-touch username.txt
+cp ./contribution-hat/config_template.yaml ~/contribution-hat-config/config.yaml
