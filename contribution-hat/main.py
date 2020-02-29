@@ -6,8 +6,8 @@ from time import sleep
 import json
 
 # Loading from yaml file
-with open("./contribution-hat-config/username.txt") as user_yaml:
-    yaml.load(user_yaml)
+with open("./contribution-hat-config/username.txt") as username_file:
+    username = username_file.read()
 
 sense = SenseHat()
 sense.clear()
@@ -18,7 +18,8 @@ while True:
         sleep(10)
     else:
         # Making request to get user's contributions
-        url = "https://github-contributions-api.herokuapp.com/{}/count".format()
+        url = "https://github-contributions-api.herokuapp.com/{}/count".format(
+            username)
         response = requests.request("GET", url).json()
 
         # Getting max number of contributions for the current year
