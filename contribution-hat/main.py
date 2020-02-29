@@ -25,7 +25,8 @@ while True:
         max_contributions = 0
         for i in range(365):
             date = date.today() - timedelta(i)
-            contributions = response["data"][date.year][date.month][date.day]
+            contributions = response["data"][str(
+                date.year)][str(date.month)][str(date.day)]
             if contributions > max_contributions:
                 max_contributions = contributions
 
@@ -33,7 +34,8 @@ while True:
         values = []
         for i in reversed(range(64)):
             date = date.today() - timedelta(i)
-            contributions = response["data"][date.year][date.month][date.day]
+            contributions = response["data"][str(
+                date.year)][str(date.month)][str(date.day)]
             percentage_of_max = max_contributions / contributions
             if percentage_of_max == 0:
                 values.append([250, 250, 250])
