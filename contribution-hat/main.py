@@ -1,5 +1,5 @@
 import requests
-from datetime import date, timedelta, datetime
+import datetime
 from time import sleep
 import json
 import yaml
@@ -7,7 +7,7 @@ import os
 
 # Loading from yaml file
 with open("./contribution-hat-config/config.yaml") as config_file:
-    config = yaml.load()
+    config = yaml.load(config_file)
 
 os.environ["TZ"] = config["timezone"]
 
@@ -21,7 +21,7 @@ def day_time_run():
     # Getting max number of contributions for the current year
     max_contributions = 0
     for i in range(365):
-        date = date.today() - timedelta(i)
+        date = datetime.date.today() - datetime.timedelta(i)
         contributions = response["data"][str(
             date.year)][str(date.month)][str(date.day)]
         if contributions > max_contributions:
@@ -30,7 +30,7 @@ def day_time_run():
     # Setting LEDs
     values = []
     for i in reversed(range(64)):
-        date = date.today() - timedelta(i)
+        date = datetime.date.today() - datetime.timedelta(i)
         contributions = response["data"][str(
             date.year)][str(date.month)][str(date.day)]
         if contributions != 0:
@@ -58,7 +58,7 @@ def day_time_run():
 
 while True:
     if "on-time" in config.keys() and "off-time" in config.keys():
-        if datetime.now().hour < 7 and datetime.now() > 23:
+        if datetime.datetime.now().hour < 7 and datetime.datetime.now() > 23:
             clear_vals = []
             for i in range(64):
                 clear_vals.append([0, 0, 0])
