@@ -1,4 +1,4 @@
-FROM mattgleich/sense-hat
+FROM arm32v7/python:3.7.6-stretch
 
 COPY /contribution-hat /contribution-hat
 
