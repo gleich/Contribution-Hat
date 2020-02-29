@@ -9,7 +9,7 @@ services:
       - ~/contribution-hat-config:/contribution-hat-config/secrets
   control-sense-hat:
     container_name: control-sense-hat
-    build: mattgleich/control-sense-hat
+    image: mattgleich/control-sense-hat
     privileged: true
     volumes:
       - ~/sense_hat_containerized:/control-sense-hat/sense_hat_containerized
