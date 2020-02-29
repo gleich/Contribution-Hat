@@ -1,7 +1,6 @@
 import requests
 import yaml
 from datetime import date, timedelta, datetime
-from sense_hat import SenseHat
 from time import sleep
 import json
 
@@ -9,12 +8,13 @@ import json
 with open("./contribution-hat-config/username.txt") as username_file:
     username = username_file.read()
 
-sense = SenseHat()
-sense.clear()
-
 while True:
     if datetime.now().hour < 6 and datetime.now().hour > 22:
-        sense.clear()
+        clear_vals = []
+        for i in range(64):
+            clear_vals.append([0, 0, 0])
+        with open("./sense_hat_containerized/leds.json", "w") as leds_json:
+            json.dump(values, leds_json)
         sleep(10)
     else:
         # Making request to get user's contributions
