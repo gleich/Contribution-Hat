@@ -1,5 +1,4 @@
 import requests
-import yaml
 from datetime import date, timedelta, datetime
 from time import sleep
 import json
