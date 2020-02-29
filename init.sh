@@ -1,23 +1,11 @@
 #!/bin/bash
 
-cwd=pwd
+mkdir ~/sense_hat_containerized
 
-cd ~
+touch ~/sense_hat_containerized/data.json
 
-rm -rf sense_hat_containerized
+touch ~/sense_hat_containerized/leds.json
 
-mkdir sense_hat_containerized
-
-cd sense_hat_containerized
-
-touch data.json
-
-touch leds.json
-
-cd ~
-
-mkdir contribution-hat-config
-
-cd $cwd
+mkdir ~/contribution-hat-config
 
 cp ./contribution-hat/config_template.yaml ~/contribution-hat-config/config.yaml
