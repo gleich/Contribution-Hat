@@ -3,7 +3,7 @@ version: "3"
 services:
   contribution-hat:
     container_name: contribution-hat
-    build: .
+    image: mattgleich/contribution-hat
     volumes:
       - ~/sense_hat_containerized:/contribution-hat/sense_hat_containerized
       - ~/contribution-hat-config:/contribution-hat/contribution-hat-config
