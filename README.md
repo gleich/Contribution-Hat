@@ -1,5 +1,7 @@
 # Contribution Hat
 
+![Docker Pulls](https://img.shields.io/docker/pulls/mattgleich/contribution-hat)
+
 Github Contribution Graph on the Raspberry Pi Sense Hat LED Matrix
 
 ![Example Picture](./example.jpeg)
