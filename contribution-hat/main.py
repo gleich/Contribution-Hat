@@ -61,7 +61,7 @@ while True:
                 clear_vals.append([0, 0, 0])
             with open("./sense_hat_containerized/leds.json", "w") as leds_json:
                 json.dump(clear_vals, leds_json)
-            sleep(30)
+            sleep(60)
         else:
             day_time_run(config)
     else:
