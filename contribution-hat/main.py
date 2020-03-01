@@ -4,6 +4,7 @@ from time import sleep
 import json
 import yaml
 import os
+import pytz
 
 
 def day_time_run(config):
@@ -14,8 +15,9 @@ def day_time_run(config):
 
     # Getting max number of contributions for the current year
     max_contributions = 0
-    for i in range(365):
-        date = datetime.date.today() - datetime.timedelta(i)
+    for i in range(364):
+        timezone = pytz.timezone(config["timezone"])
+        date = datetime.datetime.now(timezone) - datetime.timedelta(i)
         contributions = response["data"][str(
             date.year)][str(date.month)][str(date.day)]
         if contributions > max_contributions:
@@ -24,17 +26,14 @@ def day_time_run(config):
     # Setting LEDs
     values = []
     for i in reversed(range(64)):
-        date = datetime.date.today() - datetime.timedelta(i)
+        timezone = pytz.timezone(config["timezone"])
+        date = datetime.datetime.now(timezone) - datetime.timedelta(i)
         contributions = response["data"][str(
             date.year)][str(date.month)][str(date.day)]
         if contributions != 0:
             percentage_of_max = contributions / max_contributions
         else:
             percentage_of_max = 0
-        print("{}/{}/{}".format(date.month, date.day, date.year))
-        print("\tPercentage of max", percentage_of_max)
-        print("\tIndex", i)
-        print("\t Contributions", contributions)
         if percentage_of_max == 0:
             values.append([255, 0, 0])
         elif percentage_of_max < 0.25:
@@ -56,7 +55,7 @@ while True:
         config = yaml.load(config_file)
     os.environ["TZ"] = config["timezone"]
     if "off-hours" in config.keys():
-        if datetime.datetime.now().hour in config["off-hours"]:
+        if datetime.datetime.now(pytz.timezone(config["timezone"])).hour in config["off-hours"]:
             clear_vals = []
             for i in range(64):
                 clear_vals.append([0, 0, 0])
