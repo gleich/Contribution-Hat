@@ -7,9 +7,19 @@ services:
     volumes:
       - ~/sense_hat_containerized:/contribution-hat/sense_hat_containerized
       - ~/contribution-hat-config:/contribution-hat/contribution-hat-config
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    restart: unless-stopped
   control-sense-hat:
     container_name: control-sense-hat
     image: mattgleich/control-sense-hat
     privileged: true
     volumes:
       - ~/sense_hat_containerized:/control-sense-hat/sense_hat_containerized
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    restart: unless-stopped
