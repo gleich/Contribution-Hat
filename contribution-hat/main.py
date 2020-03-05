@@ -50,19 +50,22 @@ def day_time_run(config):
 
 
 while True:
-    # Loading from yaml file
-    with open("./contribution-hat-config/config.yaml") as config_file:
-        config = yaml.load(config_file)
-    os.environ["TZ"] = config["timezone"]
-    if "off-hours" in config.keys():
-        if datetime.datetime.now(pytz.timezone(config["timezone"])).hour in config["off-hours"]:
-            clear_vals = []
-            for i in range(64):
-                clear_vals.append([0, 0, 0])
-            with open("./sense_hat_containerized/leds.json", "w") as leds_json:
-                json.dump(clear_vals, leds_json)
-            sleep(60)
+    try:
+        # Loading from yaml file
+        with open("./contribution-hat-config/config.yaml") as config_file:
+            config = yaml.load(config_file)
+        os.environ["TZ"] = config["timezone"]
+        if "off-hours" in config.keys():
+            if datetime.datetime.now(pytz.timezone(config["timezone"])).hour in config["off-hours"]:
+                clear_vals = []
+                for i in range(64):
+                    clear_vals.append([0, 0, 0])
+                with open("./sense_hat_containerized/leds.json", "w") as leds_json:
+                    json.dump(clear_vals, leds_json)
+                sleep(60)
+            else:
+                day_time_run(config)
         else:
             day_time_run(config)
-    else:
-        day_time_run(config)
+    except:
+        continue
