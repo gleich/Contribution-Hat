@@ -1,8 +1,8 @@
-FROM arm32v7/python:3.7.6-stretch
+FROM arm32v7/python:3.7-stretch
 
-COPY requirements.txt .
-
-RUN pip3 install -r requirements.txt
+# Installing requirements
+RUN pip3 install poetry
+RUN poetry install --no-dev
 
 COPY /contribution-hat /contribution-hat
 

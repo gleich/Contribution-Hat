@@ -1,0 +1,11 @@
+[tool.poetry]
+name = "contribution-hat"
+version = "1.0.0"
+description = "Github Contribution Graph on the Raspberry Pi Sense Hat LED Matrix"
+authors = ["Matthew Gleich <matthewgleich@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.6 <4.0"
+pyyaml = "5.3"
+requests = "2.22.0"
+pytz = "2019.3"
