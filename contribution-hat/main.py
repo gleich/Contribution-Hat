@@ -37,13 +37,13 @@ def day_time_run(config):
         if percentage_of_max == 0:
             values.append([255, 0, 0])
         elif percentage_of_max < 0.25:
-            values.append([255, 154, 2])
+            values.append([155, 233, 168])
         elif percentage_of_max < 0.50:
-            values.append([252, 248, 0])
+            values.append([64, 196, 99])
         elif percentage_of_max < 0.75:
-            values.append([0, 255, 0])
+            values.append([48, 161, 78])
         else:
-            values.append([25, 73, 13])
+            values.append([33, 110, 57])
     with open("./sense_hat_containerized/leds.json", "w") as leds_json:
         json.dump(values, leds_json)
     sleep(30)
