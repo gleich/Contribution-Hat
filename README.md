@@ -1,3 +1,5 @@
+# This project has been archived use [contrihat](https://github.com/Matt-Gleich/contrihat) instead
+
 # Contribution Hat
 
 ![Docker Pulls](https://img.shields.io/docker/pulls/mattgleich/contribution-hat)
@@ -42,8 +44,8 @@ Set a list of hours for the lights to go off in Military time. Below are the set
 Below is an example
 
 ```yaml
-username: "Matt-Gleich"
-timezone: "America/New_York"
+username: 'Matt-Gleich'
+timezone: 'America/New_York'
 off-hours:
   - 1
   - 2
